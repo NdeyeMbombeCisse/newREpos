@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="list-article.component.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Liste des Articles</h1>
+    <button (click)="router.navigate(['/article/new'])">Ajouter un Article</button>
+    <ul>
+      <li *ngFor="let article of articles">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.body }}</p>
+        <button (click)="viewDetails(article.id)">Voir Détails</button>
+        <button (click)="editArticle(article.id)">Modifier</button>
+        <button (click)="deleteArticle(article.id)">Supprimer</button>
+      </li>
+    </ul>
+  </div>
+  
+</body>
+</html>
