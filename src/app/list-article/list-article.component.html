@@ -1,25 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="list-article.component.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Liste des Articles</h1>
-    <button (click)="router.navigate(['/article/new'])">Ajouter un Article</button>
-    <ul>
-      <li *ngFor="let article of articles">
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.body }}</p>
-        <button (click)="viewDetails(article.id)">Voir Détails</button>
-        <button (click)="editArticle(article.id)">Modifier</button>
-        <button (click)="deleteArticle(article.id)">Supprimer</button>
-      </li>
-    </ul>
+<!-- <div class="container">
+  <h1>{{ isEditMode ? 'Modifier' : 'Ajouter' }} un Article</h1>
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Titre</label>
+      <input id="title" formControlName="title" />
+      <div *ngIf="articleForm.get('title')?.invalid && (articleForm.get('title')?.dirty || articleForm.get('title')?.touched)">
+        <small *ngIf="articleForm.get('title')?.errors?.['required']">Le titre est requis.</small>
+      </div>
+    </div>
+    <div>
+      <label for="body">Contenu</label>
+      <textarea id="body" formControlName="body"></textarea>
+      <div *ngIf="articleForm.get('body')?.invalid && (articleForm.get('body')?.dirty || articleForm.get('body')?.touched)">
+        <small *ngIf="articleForm.get('body')?.errors?.['required']">Le contenu est requis.</small>
+      </div>
+    </div>
+    <button type="submit" [disabled]="articleForm.invalid">Enregistrer</button>
+    <button (click)="router.navigate(['/'])" class="bouton">Annuler</button>
+  </form>
+</div>
+
+<div class="container">
+  <h1>Liste des Articles</h1>
+  <ul>
+    <li *ngFor="let article of articles">
+      <h2>{{ article.title }}</h2>
+      <p>{{ article.body }}</p>
+      <button (click)="viewDetails(article.id)">Voir Détails</button>
+      <button (click)="editArticle(article.id)">Modifier</button>
+      <button (click)="deleteArticle(article.id)">Supprimer</button>
+    </li>
+  </ul>
+</div> -->
+<div class="container">
+  <div class="article-form">
+    <h2>{{ isEditMode ? 'Edit Article' : 'Add Article' }}</h2>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" formControlName="title" placeholder="Enter title" />
+        <div *ngIf="articleForm.get('title')?.invalid && articleForm.get('title')?.touched">
+          Title is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="body">Body</label>
+        <textarea id="body" formControlName="body" placeholder="Enter body"></textarea>
+        <div *ngIf="articleForm.get('body')?.invalid && articleForm.get('body')?.touched">
+          Body is required.
+        </div>
+      </div>
+      <button type="submit" [disabled]="articleForm.invalid">
+        {{ isEditMode ? 'Update Article' : 'Add Article' }}
+      </button>
+      <button type="button" (click)="resetForm()">Cancel</button>
+    </form>
   </div>
-  
-</body>
-</html>
+
+   
+
+  <!-- List of articles -->
+  <div class="article-list">
+    <div class="container">
+      <h1>Liste des Articles</h1>
+      <ul>
+        <li *ngFor="let article of articles">
+          <h2>{{ article.title }}</h2>
+          <p>{{ article.body }}</p>
+           <button (click)="viewDetails(article.id)">Voir Détails</button>
+          <button (click)="deleteArticle(article.id)">Supprimer</button>
+          <button (click)="loadArticleForEdit(article.id)">Modifier</button> 
+
+        </li>
+      </ul>
+    </div> 

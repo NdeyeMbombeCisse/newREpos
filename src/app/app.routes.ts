@@ -10,8 +10,8 @@ ListArticleComponent
 export const routes: Routes = [
     {path:'',component:ListArticleComponent},
     { path: 'article/new', component: AddArticleComponent  },
-    { path: 'article/edit/:id', component: AddArticleComponent },
-    { path: 'article/:id', component: DetailArticleComponent}
+    { path: 'article/:id', component: DetailArticleComponent},
+    { path: 'article/edit/:id', component: ListArticleComponent },
 ];
 
 @NgModule({
