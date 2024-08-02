@@ -163,7 +163,7 @@ export class DetailArticleComponent implements OnInit {
     );
   }
 
-  editArticle(id: number): void {
-    this.router.navigate(['/article/edit', id]);
-  }
+  // editArticle(id: number): void {
+  //   this.router.navigate(['/article/edit', id]);
+  // }
 }
