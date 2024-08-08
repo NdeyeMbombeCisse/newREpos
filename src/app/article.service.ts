@@ -41,7 +41,8 @@ import { Observable } from 'rxjs';
 })
 export class ArticleService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/articles';
+  private apiUrl = 'http://127.0.0.1:8003/api/articles';
+  
   private commentsUrl = 'https://jsonplaceholder.typicode.com/comments';
 
   constructor(private http: HttpClient) { }
